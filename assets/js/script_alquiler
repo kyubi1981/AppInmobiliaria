@@ -1,0 +1,8 @@
+window.onload = function () {
+    
+    const nombreRecibido = localStorage.getItem('propiedadesAlquiler');
+    const elementoMensaje = document.getElementById('propAlquiler');
+
+    // Usar plantillas literales para interpolar la variable
+    elementoMensaje.innerHTML = `${nombreRecibido}`;
+};

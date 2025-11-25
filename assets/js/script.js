@@ -208,16 +208,17 @@ function cardAlquiler() {
 }
 
 
-function cardPropiedades() {
-    alert("creando full ventas....");
-    const propVentas = document.getElementById("propVentas");
+function ventasFull() {
+    //alert("creando full ventas....");
+    //const propVentas = document.getElementById("propVentas");
+
     let textoPropiedades = "";
 
     for (const propiedad of datosPropiedades) {
 
         if (propiedad.modalidadPropiedad === "Venta") {
 
-            alert("hay una venta...");
+            //alert("hay una venta...");
 
             textoPropiedades += `
                     <div class="col-md-4 mb-4">
@@ -255,6 +256,66 @@ function cardPropiedades() {
             textoPropiedades += `</div>
             `;
         }
-    propVentas.innerHTML = textoPropiedades;
+    //propVentas.innerHTML = textoPropiedades;
+    console.log(textoPropiedades);
+    localStorage.setItem('propiedadesVenta', textoPropiedades);
+    window.location.href = 'propiedades_venta.html';
+    }    
+}
+
+
+function alquileresFull() {
+    //alert("creando full alquiler....");
+    //const propVentas = document.getElementById("propVentas");
+
+    let textoPropiedades = "";
+
+    for (const propiedad of datosPropiedades) {
+
+        if (propiedad.modalidadPropiedad === "Alquiler") {
+
+            //alert("hay un alquiler...");
+
+            textoPropiedades += `
+                    <div class="col-md-4 mb-4">
+
+                        <div class="card">
+                            <img src= ${propiedad.imgPropiedad} class="card-img-top" alt="Imagen del departamento"/>
+
+                            <div class="card-body">
+                                <h5 class="card-title"> ${propiedad.tituloPropiedad} </h5>
+                                <p class="card-text"> ${propiedad.tipPropiedad} </p>
+                                <p><i class="fas fa-map-marker-alt"></i> ${propiedad.direccionPropiedad} </p>
+                                
+                                <p>
+                                    <i class="fas fa-bed"></i> ${propiedad.habitacionesPropiedad} Habitaciones |
+                                    <i class="fas fa-bath"></i> ${propiedad.baniosPropiedad} Baños
+                                </p>
+
+                                <p><i class="fas fa-dollar-sign"></i> ${propiedad.precioPropiedad} </p>`
+
+            if (propiedad.fumar === false) {
+                //alert("no fumar!!!")
+                textoPropiedades += `<p class="text-danger"> <i class="fas fa-smoking-ban"> </i> No se permite fumar </p>`
+            } else if (propiedad.fumar === true) {
+                textoPropiedades += `<p class="text-success"><i class="fas fa-smoking"></i> Permitido fumar </p>`
+            }
+
+            if (propiedad.mascota === false) {
+                textoPropiedades += `<p class="text-danger"><i class="fa-solid fa-ban"></i> No se permiten mascotas </p>`
+            } else if (propiedad.mascota === true) {
+                textoPropiedades += `<p class="text-success"><i class="fas fa-paw"></i> Mascotas permitidas </p>`
+            }
+
+            textoPropiedades += `</div>`
+            textoPropiedades += `</div>`
+            textoPropiedades += `</div>
+            `;
+        }
+    //propVentas.innerHTML = textoPropiedades;
+    console.log(textoPropiedades);
+
+    localStorage.setItem('propiedadesAlquiler', textoPropiedades);
+    window.location.href = 'propiedades_alquiler.html';
     }    
 }
